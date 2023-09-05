@@ -197,7 +197,7 @@ def filter_pred_dct(res_dct):
             new_dct[key] = [(t0/1000, t1/1000) for t0, t1 in value]
     return new_dct
 
-def evaluate_submission(split="dev", res_dir="challenge/", pred_dir="pred_jerome_030923"):
+def evaluate_submission(split="dev", res_dir="challenge/", pred_dir="pred_030923"):
     gt_alignment_dct = load_json(os.path.join(res_dir, "gt", f"{split}_gt_alignment.json"))
     gt_dct = load_json(os.path.join(res_dir, "gt", f"{split}_gt_tuple.json"))
     pred_dct = filter_pred_dct(load_json(os.path.join(res_dir, pred_dir, f"{split}.json")))
