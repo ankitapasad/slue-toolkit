@@ -16,11 +16,18 @@ import json
 import os
 import numpy as np
 
-from slue_toolkit.generic_utils import get_file_identifiers, load_dct, read_lst, save_dct
-
 def load_json(fname):
     data = json.loads(open(fname).read())
     return data
+
+def save_json(fname, dict_name):
+    with open(fname, "w") as f:
+        f.write(json.dumps(dict_name, indent=4))
+
+def read_lst(fname):
+    with open(fname, "r") as f:
+        lst_from_file = [line.strip() for line in f.readlines()]
+    return lst_from_file
 
 def evaluate(true_pos, false_neg, false_pos):
     if true_pos == 0:
@@ -225,7 +232,7 @@ def evaluate_submission(split="dev", res_dir="challenge/", pred_dir="pred_030923
     res_dct["frame"]["prec"] = prec
     res_dct["frame"]["recall"] = recall
     
-    save_dct(os.path.join("challenge", pred_dir, f"{split}_res.json"), res_dct)
+    save_json(os.path.join("challenge", pred_dir, f"{split}_res.json"), res_dct)
 
 
 if __name__ == "__main__":
